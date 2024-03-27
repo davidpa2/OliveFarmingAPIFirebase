@@ -1,0 +1,4 @@
+.env
+node_modules
+.husky
+credentials.json
