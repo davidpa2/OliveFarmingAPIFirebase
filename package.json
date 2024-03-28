@@ -21,6 +21,7 @@
     "uuid": "^9.0.1"
   },
   "imports": {
+    "#Root/*": "./src/*",
     "#Config/*": "./src/config/*",
     "#Constants/*": "./src/constants/*",
     "#Controllers/*": "./src/controllers/*",

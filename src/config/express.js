@@ -1,10 +1,12 @@
 import express from 'express'
+import seasonsRouter from '#Routes/seasons.routes.js'
 
 const expressApp = express();
 
+//Middleware
 expressApp.use(express.json());
 
-console.log('holaa');
-// expressApp.use('')
+//Routes
+expressApp.use('/seasons', seasonsRouter)
 
 export default expressApp;
