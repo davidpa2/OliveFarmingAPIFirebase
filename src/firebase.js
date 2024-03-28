@@ -1,9 +1,10 @@
-import { initializeApp, cert } from 'firebase-admin/app'
-import { getFirestore } from 'firebase-admin/firestore'
-import serviceAccount from '../credentials.json' with {type: "json"}
+import { initializeApp } from 'firebase/app'
+import { getFirestore } from 'firebase/firestore'
+import firebaseConfig from '../credentials.json' with {type: "json"}
 
-initializeApp({
-    credential: cert(serviceAccount)
-})
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-export const db = getFirestore();
+console.log('Initialized FirebaseApp');
+
+export default db;

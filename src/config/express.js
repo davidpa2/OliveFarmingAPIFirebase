@@ -1,5 +1,6 @@
 import express from 'express'
 import seasonsRouter from '#Routes/seasons.routes.js'
+import usersRouter from '#Root/routes/users.routes.js';
 
 const expressApp = express();
 
@@ -7,6 +8,7 @@ const expressApp = express();
 expressApp.use(express.json());
 
 //Routes
-expressApp.use('/seasons', seasonsRouter)
+expressApp.use("/users", usersRouter);
+expressApp.use('/seasons', seasonsRouter);
 
 export default expressApp;

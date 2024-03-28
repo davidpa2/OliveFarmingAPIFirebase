@@ -5,8 +5,7 @@ import swaggerDocs from './swagger.js';
 var app = expressApp;
 var port = process.env.PORT || 3525;
 
-
-app.get('/', function (req, res) {
+app.get('/ping', function (req, res) {
     res.status(200).send({
         message: 'GET Home route working fine!'
     });

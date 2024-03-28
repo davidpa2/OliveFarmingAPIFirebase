@@ -1,4 +1,4 @@
-import { db } from '#Root/firebase.js';
+import db from '#Root/firebase.js';
 import { v4 as uuid } from 'uuid'
 
 class SeasonsController {
