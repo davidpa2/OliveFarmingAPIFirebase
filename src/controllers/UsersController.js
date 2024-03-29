@@ -1,11 +1,11 @@
 import db from '#Root/firebase.js';
-import { collection, query, where, getDocs, getDoc } from 'firebase/firestore'
-import { compare } from 'bcrypt';
+import { collection, query, where, getDocs, doc, setDoc } from 'firebase/firestore'
+import { compare, hash } from 'bcrypt';
 import { v4 as uuid } from 'uuid';
 import { SignJWT } from 'jose';
+import { SALT } from '#Constants/salt.js';
 
 class UsersController {
-    collection = "Users";
 
     async loginUser(req, res) {
         const usersRef = collection(db, "Users");
@@ -38,6 +38,34 @@ class UsersController {
         }).setIssuedAt().setExpirationTime('7d').sign(encoder.encode(process.env.JWT_PRIVATE_KEY));
 
         return res.send({ jwt });
+    }
+
+
+    async register(req, res) {
+        const { name, surname, email, password } = req.body;
+        const usersRef = collection(db, "Users");
+
+        // Check if there is an user with this email
+        const q = query(usersRef, where("email", "==", email));
+        var existingUserByEmail = null;
+        // Get the results
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
+            existingUserByEmail = doc;
+        });
+        if (existingUserByEmail) return res.status(409).send({ errors: ['Ya existe un usuario con ese email registrado'] });
+
+        // Hash password
+        const hashedPassword = await hash(password, SALT);
+        // And upload Doc
+        await setDoc(doc(db, "Users", uuid()), {
+            "email": email,
+            "password": hashedPassword,
+            "name": name,
+            "surname": surname
+        });
+
+        res.status(200).send("Se ha registrado el usuario")
     }
 }
 
