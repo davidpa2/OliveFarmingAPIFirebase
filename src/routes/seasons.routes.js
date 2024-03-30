@@ -2,12 +2,16 @@ import { Router } from "express";
 
 import SeasonsController from "#Controllers/SeasonsController.js";
 
+import userJWTDTO from '#Dto/user-jwt-dto.js';
+
 const seasonsRouter = Router();
 
 /**
  * @openapi
  * /seasons/addSeason:
  *   post:
+ *     security:
+ *       - ApiKey: []
  *     summary: Add a new agricultural season
  *     tags:
  *       - Seasons
@@ -35,6 +39,11 @@ const seasonsRouter = Router();
  *             schema:
  *               $ref: "#/components/schemas/ErrorsSchema"
  * components:
+ *   securitySchemes:
+ *     ApiKey:
+ *       type: apiKey
+ *       name: Authorization
+ *       in: header
  *   schemas:
  *     AddSeasonSchema:
  *       type: object
@@ -54,12 +63,14 @@ const seasonsRouter = Router();
  *             type: string
  *             example: Something went wrong...
  */
-seasonsRouter.post("/addSeason", SeasonsController.addSeason);
+seasonsRouter.post("/addSeason", userJWTDTO, SeasonsController.addSeason);
 
 /**
  * @openapi
  * /seasons/seasonsCount:
  *   get:
+ *     security:
+ *       - ApiKey: []
  *     summary: Get the count of all seasons
  *     tags:
  *       - Seasons
@@ -81,12 +92,14 @@ seasonsRouter.post("/addSeason", SeasonsController.addSeason);
  *             schema:
  *               $ref: "#/components/schemas/ErrorsSchema"
  */
-seasonsRouter.get("/seasonsCount", SeasonsController.seasonsCount);
+seasonsRouter.get("/seasonsCount", userJWTDTO, SeasonsController.seasonsCount);
 
 /**
  * @openapi
  * /seasons/getAllSeasons:
  *   get:
+ *     security:
+ *       - ApiKey: []
  *     summary: Get a list of all seasons
  *     tags:
  *       - Seasons
@@ -109,6 +122,6 @@ seasonsRouter.get("/seasonsCount", SeasonsController.seasonsCount);
  *             schema:
  *               $ref: "#/components/schemas/ErrorsSchema"
  */
-seasonsRouter.get("/getAllSeasons", SeasonsController.getAllSeasons);
+seasonsRouter.get("/getAllSeasons", userJWTDTO, SeasonsController.getAllSeasons);
 
 export default seasonsRouter;

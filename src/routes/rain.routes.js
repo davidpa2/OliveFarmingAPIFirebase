@@ -2,12 +2,16 @@ import { Router } from "express";
 
 import RainController from "#Controllers/RainController.js";
 
+import userJWTDTO from '#Dto/user-jwt-dto.js';
+
 const rainRouter = Router();
 
 /**
  * @openapi
  * /rain/newRainLog:
  *   post:
+ *     security:
+ *       - ApiKey: []
  *     summary: Insert a new rain log
  *     tags:
  *       - Rain
@@ -53,6 +57,6 @@ const rainRouter = Router();
  *         - date
  *         - liters
  */
-rainRouter.post("/newRainLog", RainController.newRainLog);
+rainRouter.post("/newRainLog", userJWTDTO, RainController.newRainLog);
 
 export default rainRouter;
