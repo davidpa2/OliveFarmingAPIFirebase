@@ -4,6 +4,12 @@ import { v4 as uuid } from 'uuid'
 
 class SeasonsController {
 
+    /**
+     * Add a new season
+     * @param {*} req 
+     * @param {*} res 
+     * @returns 
+     */
     async addSeason(req, res) {
         const { seasonCode } = req.body;
         const seasonRef = collection(db, "Seasons");
@@ -30,6 +36,26 @@ class SeasonsController {
         });
 
         res.status(200).send("Se ha introducido una nueva temporara agrícola");
+    }
+
+    /**
+     * Get the count of all seasons
+     * @param {*} req 
+     * @param {*} res 
+     */
+    async seasonsCount(req, res) {
+        const snapshot = await collection(db, "Seasons").get();
+        res.status(200).send({ seasonCount: snapshot.docs.map(doc => doc.data()) });
+
+        // // Check if there is a season with this seasonCode
+        // const q = query(seasonRef);
+        // let season = null;
+        // // Get the results
+        // const querySnapshot = await getDocs(q);
+        // querySnapshot.forEach((doc) => {
+        //     season = doc;
+        // });
+        // if (season) return res.status(409).send({ errors: ['Ya existe una temporada de lluvia con ese código'] });
     }
 }
 

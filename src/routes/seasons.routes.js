@@ -1,9 +1,8 @@
-import { Router  } from "express";
+import { Router } from "express";
 
 import SeasonsController from "#Controllers/SeasonsController.js";
 
 const seasonsRouter = Router();
-// var seasonsController = new SeasonsController();
 
 /**
  * @openapi
@@ -53,8 +52,35 @@ const seasonsRouter = Router();
  *           type: array
  *           items: 
  *             type: string
- *             example: Must have required property 'seasonCode'
+ *             example: Something went wrong...
  */
 seasonsRouter.post("/addSeason", SeasonsController.addSeason);
+
+/**
+ * @openapi
+ * /seasons/seasonsCount:
+ *   get:
+ *     summary: Get the count of all seasons
+ *     tags:
+ *       - Seasons
+ *     responses:
+ *       200:
+ *         description: Added a new Season!
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 seasonCount:
+ *                   type: number
+ *                   example: 3
+ *       5XX:
+ *         description: Error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: "#/components/schemas/ErrorsSchema"
+ */
+seasonsRouter.get("/seasonsCount", SeasonsController.seasonsCount);
 
 export default seasonsRouter;
