@@ -6,7 +6,7 @@ const options = {
         openapi: "3.0.0",
         info: { title: "OliveFarmingAPIFirebase", version: "1.0.0" }
     },
-    apis: ["./src/routes/users.routes.js", "./src/routes/seasons.routes.js"],
+    apis: ["./src/routes/users.routes.js", "./src/routes/seasons.routes.js", "./src/routes/rain.routes.js"],
 };
 
 
