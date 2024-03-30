@@ -1,5 +1,4 @@
 import db from '#Root/firebase.js';
-import { collection, query, where, getDocs, doc, setDoc } from 'firebase/firestore';
 import { v4 as uuid } from 'uuid'
 
 class SeasonsController {
@@ -12,7 +11,7 @@ class SeasonsController {
      */
     async addSeason(req, res) {
         const { seasonCode } = req.body;
-        const seasonRef = collection(db, "Seasons");
+        const seasonRef = db.collection("Seasons");
 
         // Check if the seasonCode format is correct
         let regex = /^[0-9]{2}\/[0-9]{2}$/gm;
@@ -21,21 +20,15 @@ class SeasonsController {
         }
 
         // Check if there is a season with this seasonCode
-        const q = query(seasonRef, where("seasonCode", "==", seasonCode));
-        let season = null;
-        // Get the results
-        const querySnapshot = await getDocs(q);
-        querySnapshot.forEach((doc) => {
-            season = doc;
-        });
-        if (season) return res.status(409).send({ errors: ['Ya existe una temporada de lluvia con ese código'] });
+        const snapshot = await seasonRef.where("seasonCode", "==", seasonCode).get();
+        if (!snapshot.empty) return res.status(409).send({ errors: ['Ya existe una temporada de lluvia con ese código'] });
 
         // Upload new Doc
-        await setDoc(doc(db, "Seasons", uuid()), {
+        await seasonRef.doc(uuid()).set({
             "seasonCode": seasonCode
         });
 
-        res.status(200).send("Se ha introducido una nueva temporara agrícola");
+        res.status(200).send("Se ha introducido una nueva temporada agrícola");
     }
 
     /**
@@ -44,18 +37,8 @@ class SeasonsController {
      * @param {*} res 
      */
     async seasonsCount(req, res) {
-        const snapshot = await collection(db, "Seasons").get();
-        res.status(200).send({ seasonCount: snapshot.docs.map(doc => doc.data()) });
-
-        // // Check if there is a season with this seasonCode
-        // const q = query(seasonRef);
-        // let season = null;
-        // // Get the results
-        // const querySnapshot = await getDocs(q);
-        // querySnapshot.forEach((doc) => {
-        //     season = doc;
-        // });
-        // if (season) return res.status(409).send({ errors: ['Ya existe una temporada de lluvia con ese código'] });
+        const snapshot = await db.collection("Seasons").get();
+        res.status(200).send({ seasonCount: snapshot.docs.length });
     }
 }
 

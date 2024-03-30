@@ -1,9 +1,12 @@
-import { initializeApp } from 'firebase/app'
-import { getFirestore } from 'firebase/firestore'
-import firebaseConfig from '../credentials.json' with {type: "json"}
+import { getFirestore } from 'firebase-admin/firestore';
+import { cert, initializeApp } from 'firebase-admin/app';
+import serviceAccount from '../credentials.json' with {type: "json"}
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+initializeApp({
+    credencial: cert(serviceAccount)
+});
+
+const db = getFirestore();
 
 console.log('Initialized FirebaseApp');
 

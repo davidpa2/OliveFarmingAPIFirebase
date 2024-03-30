@@ -1,5 +1,4 @@
 import db from '#Root/firebase.js';
-import { collection, query, where, getDocs, doc, setDoc } from 'firebase/firestore'
 import { compare, hash } from 'bcrypt';
 import { v4 as uuid } from 'uuid';
 import { SignJWT } from 'jose';
@@ -7,23 +6,25 @@ import { SALT } from '#Constants/salt.js';
 
 class UsersController {
 
+    /**
+     * Login to account
+     * @param {*} req 
+     * @param {*} res 
+     * @returns 
+     */
     async loginUser(req, res) {
-        const usersRef = collection(db, "Users");
+        const usersRef = db.collection("Users");
         const { email, password } = req.body
 
-        // Execute the query
-        const q = query(usersRef, where("email", "==", email));
+        // Check if there is an user with this email
+        const snapshot = await usersRef.where("email", "==", email).get();
+        if (snapshot.empty) return res.status(401).send({ errors: ['Credenciales incorrectas'] });
+
         var exisingUserByEmail = null;
-        // Get the results
-        const querySnapshot = await getDocs(q);
-        querySnapshot.forEach((doc) => {
-            // doc.data() is never undefined for query doc snapshots
+        snapshot.forEach((doc) => {
             // console.log(doc.id, " => ", doc.data());
             exisingUserByEmail = doc;
         });
-
-        // Check if the user exists by email
-        if (!exisingUserByEmail) return res.status(401).send({ errors: ["Credenciales incorrectas"] });
 
         // Check if the password is correct
         const checkPassword = await compare(password, exisingUserByEmail.data().password)
@@ -40,25 +41,24 @@ class UsersController {
         return res.send({ jwt });
     }
 
-
+    /**
+     * Register an user
+     * @param {*} req 
+     * @param {*} res 
+     * @returns 
+     */
     async register(req, res) {
         const { name, surname, email, password } = req.body;
-        const usersRef = collection(db, "Users");
+        const usersRef = db.collection("Users");
 
         // Check if there is an user with this email
-        const q = query(usersRef, where("email", "==", email));
-        var existingUserByEmail = null;
-        // Get the results
-        const querySnapshot = await getDocs(q);
-        querySnapshot.forEach((doc) => {
-            existingUserByEmail = doc;
-        });
-        if (existingUserByEmail) return res.status(409).send({ errors: ['Ya existe un usuario con ese email registrado'] });
+        const snapshot = await usersRef.where("email", "==", email).get();
+        if (!snapshot.empty) return res.status(401).send({ errors: ['Ya existe un usuario con ese email registrado'] });
 
         // Hash password
         const hashedPassword = await hash(password, SALT);
         // And upload Doc
-        await setDoc(doc(db, "Users", uuid()), {
+        await usersRef.doc(uuid()).set({
             "email": email,
             "password": hashedPassword,
             "name": name,
