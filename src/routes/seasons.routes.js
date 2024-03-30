@@ -83,4 +83,32 @@ seasonsRouter.post("/addSeason", SeasonsController.addSeason);
  */
 seasonsRouter.get("/seasonsCount", SeasonsController.seasonsCount);
 
+/**
+ * @openapi
+ * /seasons/getAllSeasons:
+ *   get:
+ *     summary: Get a list of all seasons
+ *     tags:
+ *       - Seasons
+ *     responses:
+ *       200:
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 seasons:
+ *                   type: array
+ *                   items:
+ *                     type: string
+ *                   example: ['22/23', '23/24']
+ *       5XX:
+ *         description: Error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: "#/components/schemas/ErrorsSchema"
+ */
+seasonsRouter.get("/getAllSeasons", SeasonsController.getAllSeasons);
+
 export default seasonsRouter;

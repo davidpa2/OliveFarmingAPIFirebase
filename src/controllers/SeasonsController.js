@@ -40,6 +40,23 @@ class SeasonsController {
         const snapshot = await db.collection("Seasons").get();
         res.status(200).send({ seasonCount: snapshot.docs.length });
     }
+
+    /**
+     * Get all seasons
+     * @param {*} req 
+     * @param {*} res 
+     */
+    async getAllSeasons(req, res) {
+        const seasonsRef = db.collection('Seasons');
+        const snapshot = await seasonsRef.get();
+
+        var seasons = [];
+        snapshot.forEach(doc => {
+            seasons.push(doc.data().seasonCode);
+        });
+
+        res.status(200).send({seasons})
+    }
 }
 
 
