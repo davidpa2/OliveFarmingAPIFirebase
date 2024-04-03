@@ -1,5 +1,6 @@
 import { Router } from "express";
 import UsersController from "#Root/controllers/UsersController.js";
+import userJWTDTO from '#Dto/user-jwt-dto.js';
 
 const usersRouter = Router();
 
@@ -111,5 +112,57 @@ usersRouter.post("/loginUser", UsersController.loginUser);
  */
 usersRouter.post("/register", UsersController.register);
 
+
+/**
+ * @openapi
+ * /users/me:
+ *   get:
+ *     security:
+ *       - ApiKey: []
+ *     summary: Get user info
+ *     tags:
+ *       - Users
+ *     responses:
+ *       200:
+ *         description: Succesfully logged in!
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: "#/components/schemas/ProfileSchema"
+ *       5XX:
+ *         description: Error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: "#/components/schemas/ErrorsSchema"
+ * components:
+ *   securitySchemes:
+ *     ApiKey:
+ *       type: apiKey
+ *       name: Authorization
+ *       in: header
+ *   schemas:
+ *     ProfileSchema:
+ *       type: object
+ *       properties:
+ *         _id: 
+ *           type: string
+ *           example: uuid v4
+ *         name: 
+ *           type: string
+ *           example: David 
+ *         surname:
+ *           type: string
+ *           example: Padilla
+ *         email:
+ *           type: string
+ *           example: david@gmail.com
+ *       required:
+ *         - _id
+ *         - name
+ *         - surname
+ *         - email
+ */
+usersRouter.get("/me", userJWTDTO, UsersController.me);
 
 export default usersRouter;

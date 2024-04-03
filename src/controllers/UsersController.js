@@ -31,7 +31,7 @@ class UsersController {
         if (!checkPassword) return res.status(401).send({ errors: ["Credenciales incorrectas"] });
 
         // Generate JWT
-        const jwtConstructor = new SignJWT({ id: exisingUserByEmail._id });
+        const jwtConstructor = new SignJWT({ id: exisingUserByEmail.id });
 
         const encoder = new TextEncoder();
         const jwt = await jwtConstructor.setProtectedHeader({
@@ -66,6 +66,20 @@ class UsersController {
         });
 
         res.status(200).send("Se ha registrado el usuario")
+    }
+
+    /**
+     * Get user info
+     * @param {*} req 
+     * @param {*} res 
+     */
+    async me(req, res) {
+        const { id } = req;
+
+        const usersRef = db.collection("Users");
+        const user = await usersRef.doc(id).get();
+        
+        res.status(200).send({ name: user.data().name, surname: user.data().surname, email: user.data().email  })
     }
 }
 
