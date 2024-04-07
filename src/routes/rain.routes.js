@@ -59,4 +59,40 @@ const rainRouter = Router();
  */
 rainRouter.post("/newRainLog", userJWTDTO, RainController.newRainLog);
 
+/**
+ * @openapi
+ * /rain/deleteRainLog/{id}:
+ *   delete:
+ *     security:
+ *       - ApiKey: []
+ *     summary: Delete a rain log
+ *     tags:
+ *       - Rain
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: RainLog ID
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Deleted a rain log!
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: OK
+ *       5XX:
+ *         description: Error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: "#/components/schemas/ErrorsSchema"
+ */
+rainRouter.delete("/deleteRainLog/:id", userJWTDTO, RainController.deleteRainLog);
+
 export default rainRouter;

@@ -27,6 +27,28 @@ class RainController {
 
         res.status(200).send("Se ha introducido un nuevo registro de lluvia");
     }
+
+    /**
+     * Delete a rain log
+     * @param {*} req 
+     * @param {*} res 
+     * @returns 
+     */
+    async deleteRainLog(req, res) {
+        const { id } = req.params;
+        console.log(req.params);
+        const rainRef = db.collection("Rain");
+
+        const rainLog = await rainRef.doc(id).get();
+
+        if (!rainLog.exists) {
+            return res.status(500).send({ errors: ['No se ha encontrado un registro de lluvia con ese ID'] });
+        }
+
+        await rainRef.doc(id).delete();
+
+        res.status(200).send("Se ha eliminado el registro de lluvia");
+    }
 }
 
 
