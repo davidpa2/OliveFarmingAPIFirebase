@@ -95,4 +95,40 @@ rainRouter.post("/newRainLog", userJWTDTO, RainController.newRainLog);
  */
 rainRouter.delete("/deleteRainLog/:id", userJWTDTO, RainController.deleteRainLog);
 
+/**
+ * @openapi
+ * /rain/seasonLiters/{season}:
+ *   get:
+ *     security:
+ *       - ApiKey: []
+ *     summary: Get the count of liters of a season
+ *     tags:
+ *       - Rain
+ *     parameters:
+ *       - in: path
+ *         name: season
+ *         required: true
+ *         description: Season code
+ *         schema:
+ *           type: string
+ *           example: 22/23
+ *     responses:
+ *       200:
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 liters:
+ *                   type: number
+ *                   example: 45
+ *       5XX:
+ *         description: Error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: "#/components/schemas/ErrorsSchema"
+ */
+rainRouter.get("/seasonLiters/:season", userJWTDTO, RainController.seasonLiters);
+
 export default rainRouter;

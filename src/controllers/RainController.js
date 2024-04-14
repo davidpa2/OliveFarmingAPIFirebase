@@ -36,7 +36,6 @@ class RainController {
      */
     async deleteRainLog(req, res) {
         const { id } = req.params;
-        console.log(req.params);
         const rainRef = db.collection("Rain");
 
         const rainLog = await rainRef.doc(id).get();
@@ -48,6 +47,28 @@ class RainController {
         await rainRef.doc(id).delete();
 
         res.status(200).send("Se ha eliminado el registro de lluvia");
+    }
+
+    /**
+     * Get the count of liters of a season
+     * @param {*} req 
+     * @param {*} res 
+     */
+    async seasonLiters(req, res) {
+        const {season} = req.params;
+        const rainReg = db.collection("Rain");
+
+        const snapshot = await rainReg.where("season", "==", season).get();
+        if (snapshot.empty) {
+            return res.status(500).send({ errors: ['No se ha encontrado ninguna temporada de lluvias con ese código'] });
+        }
+
+        let liters = 0;
+        snapshot.forEach(season => {
+            liters += season.data().liters;
+        });
+
+        res.status(200).send({liters});
     }
 }
 
