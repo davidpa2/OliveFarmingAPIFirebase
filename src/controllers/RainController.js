@@ -4,6 +4,35 @@ import { v4 as uuid } from 'uuid';
 class RainController {
 
     /**
+     * Get all the rain logs of a season
+     * @param {*} req 
+     * @param {*} res 
+     * @returns 
+     */
+    async findBySeason(req, res) {
+        const {season} = req.params;
+        const rainRef = db.collection("Rain");
+
+        const snapshot = await rainRef.where("season", "==", season).get();
+        if (snapshot.empty) {
+            return res.status(500).send({ errors: ['No se ha encontrado ninguna temporada de lluvias con ese código'] });
+        }
+
+        let rainLogs = []
+        snapshot.forEach(rainLog => {
+            rainLogs.push(
+                {
+                    date: rainLog.data().date,
+                    liters: rainLog.data().liters,
+                    season: rainLog.data().season
+                }
+            );
+        });
+
+        res.status(200).send(rainLogs);
+    }
+
+    /**
      * Insert a new rain log
      * @param {*} req 
      * @param {*} res 

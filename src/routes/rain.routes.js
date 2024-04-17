@@ -6,6 +6,54 @@ import userJWTDTO from '#Dto/user-jwt-dto.js';
 
 const rainRouter = Router();
 
+
+/**
+ * @openapi
+ * /rain/findBySeason/{season}:
+ *   get:
+ *     security:
+ *       - ApiKey: []
+ *     summary: Get all the rain logs of a season
+ *     tags:
+ *       - Rain
+ *     parameters:
+ *       - in: path
+ *         name: season
+ *         required: true
+ *         description: Season code
+ *         schema:
+ *           type: string
+ *           example: 22/23
+ *     responses:
+ *       200:
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   date:
+ *                     type: date
+ *                     description: Date of the rain log.
+ *                     example: 2023-05-22T13:17:00.000+00:00
+ *                   liters:
+ *                     type: integer
+ *                     description: Liters of the log.
+ *                     example: 8
+ *                   season:
+ *                     type: string
+ *                     description: Rainy season.
+ *                     example: 23/24
+ *       5XX:
+ *         description: Error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: "#/components/schemas/ErrorsSchema"
+ */
+rainRouter.get("/findBySeason/:season", userJWTDTO, RainController.findBySeason);
+
 /**
  * @openapi
  * /rain/newRainLog:
