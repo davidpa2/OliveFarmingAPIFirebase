@@ -3,7 +3,7 @@ import expressApp from "#Config/express.js";
 import swaggerDocs from './swagger.js';
 
 var app = expressApp;
-var port = process.env.PORT || 3525;
+var port = process.env.PUERTO || 3525;
 
 app.get('/ping', function (req, res) {
     res.status(200).send({

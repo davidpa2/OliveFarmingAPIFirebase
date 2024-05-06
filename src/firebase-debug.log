@@ -1,0 +1,148 @@
+[debug] [2024-04-24T19:19:03.050Z] ----------------------------------------------------------------------
+[debug] [2024-04-24T19:19:03.053Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\david\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2024-04-24T19:19:03.053Z] CLI Version:   13.0.2
+[debug] [2024-04-24T19:19:03.054Z] Platform:      win32
+[debug] [2024-04-24T19:19:03.054Z] Node Version:  v20.10.0
+[debug] [2024-04-24T19:19:03.054Z] Time:          Wed Apr 24 2024 21:19:03 GMT+0200 (hora de verano de Europa central)
+[debug] [2024-04-24T19:19:03.054Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-04-24T19:19:03.141Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-04-24T19:19:03.146Z] > authorizing via signed-in user (davidpaag2002@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\david\OneDrive\Documentos\Proyectos\OliveFarmingAPIFirebase
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2024-04-24T19:19:06.619Z] Using project from CLI flag: olive-farming
+[debug] [2024-04-24T19:19:06.620Z] > refreshing access token with scopes: []
+[debug] [2024-04-24T19:19:06.622Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2024-04-24T19:19:06.622Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-04-24T19:19:06.805Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 400
+[debug] [2024-04-24T19:19:06.805Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-04-24T19:19:06.806Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/olive-farming [none]
+[debug] [2024-04-24T19:19:06.911Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/olive-farming 401
+[debug] [2024-04-24T19:19:06.912Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/olive-farming {"error":{"code":401,"message":"Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.","status":"UNAUTHENTICATED"}}
+[debug] [2024-04-24T19:19:06.913Z] HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
+[debug] [2024-04-24T19:19:06.915Z] FirebaseError: HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
+    at responseToError (C:\Users\david\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:49:12)
+    at RetryOperation._fn (C:\Users\david\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:292:77)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[error] 
+[error] Error: Failed to get Firebase project olive-farming. Please make sure the project exists and your account has permission to access it.
+[debug] [2024-04-24T19:19:21.033Z] ----------------------------------------------------------------------
+[debug] [2024-04-24T19:19:21.036Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\david\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --only functions
+[debug] [2024-04-24T19:19:21.036Z] CLI Version:   13.0.2
+[debug] [2024-04-24T19:19:21.036Z] Platform:      win32
+[debug] [2024-04-24T19:19:21.036Z] Node Version:  v20.10.0
+[debug] [2024-04-24T19:19:21.037Z] Time:          Wed Apr 24 2024 21:19:21 GMT+0200 (hora de verano de Europa central)
+[debug] [2024-04-24T19:19:21.037Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-04-24T19:19:21.127Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-04-24T19:19:21.127Z] > authorizing via signed-in user (davidpaag2002@gmail.com)
+[debug] [2024-04-24T19:19:21.128Z] [iam] checking project olive-farming for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2024-04-24T19:19:21.129Z] > refreshing access token with scopes: []
+[debug] [2024-04-24T19:19:21.131Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2024-04-24T19:19:21.131Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-04-24T19:19:21.315Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 400
+[debug] [2024-04-24T19:19:21.315Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-04-24T19:19:21.316Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/olive-farming:testIamPermissions [none]
+[debug] [2024-04-24T19:19:21.316Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/olive-farming:testIamPermissions x-goog-quota-user=projects/olive-farming
+[debug] [2024-04-24T19:19:21.316Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/olive-farming:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2024-04-24T19:19:22.026Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/olive-farming:testIamPermissions 401
+[debug] [2024-04-24T19:19:22.026Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/olive-farming:testIamPermissions {"error":{"code":401,"message":"Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.","status":"UNAUTHENTICATED","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"ACCESS_TOKEN_TYPE_UNSUPPORTED","metadata":{"method":"google.cloudresourcemanager.v1.Projects.TestIamPermissions","service":"cloudresourcemanager.googleapis.com"}}]}}
+[debug] [2024-04-24T19:19:22.028Z] [iam] error while checking permissions, command may fail: FirebaseError: HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
+[debug] [2024-04-24T19:19:22.029Z] > refreshing access token with scopes: []
+[debug] [2024-04-24T19:19:22.030Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2024-04-24T19:19:22.030Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-04-24T19:19:22.079Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 400
+[debug] [2024-04-24T19:19:22.080Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-04-24T19:19:22.081Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/olive-farming/serviceAccounts/olive-farming@appspot.gserviceaccount.com:testIamPermissions [none]
+[debug] [2024-04-24T19:19:22.081Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/olive-farming/serviceAccounts/olive-farming@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2024-04-24T19:19:22.740Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/olive-farming/serviceAccounts/olive-farming@appspot.gserviceaccount.com:testIamPermissions 401
+[debug] [2024-04-24T19:19:22.741Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/olive-farming/serviceAccounts/olive-farming@appspot.gserviceaccount.com:testIamPermissions {"error":{"code":401,"message":"Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.","status":"UNAUTHENTICATED","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"ACCESS_TOKEN_TYPE_UNSUPPORTED","metadata":{"method":"google.iam.admin.v1.IAM.TestIamPermissions","service":"iam.googleapis.com"}}]}}
+[debug] [2024-04-24T19:19:22.741Z] [functions] service account IAM check errored, deploy may fail: HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project. {"name":"FirebaseError","children":[],"context":{"body":{"error":{"code":401,"message":"Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.","status":"UNAUTHENTICATED","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"ACCESS_TOKEN_TYPE_UNSUPPORTED","metadata":{"method":"google.iam.admin.v1.IAM.TestIamPermissions","service":"iam.googleapis.com"}}]}},"response":{"statusCode":401}},"exit":1,"message":"HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.","status":401}
+[info] 
+[info] === Deploying to 'olive-farming'...
+[info] 
+[info] i  deploying functions 
+[info] +  functions: Finished running predeploy script. 
+[debug] [2024-04-24T19:19:22.755Z] > refreshing access token with scopes: []
+[debug] [2024-04-24T19:19:22.756Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2024-04-24T19:19:22.756Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-04-24T19:19:22.808Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 400
+[debug] [2024-04-24T19:19:22.808Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-04-24T19:19:22.809Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/olive-farming [none]
+[debug] [2024-04-24T19:19:22.902Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/olive-farming 401
+[debug] [2024-04-24T19:19:22.903Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/olive-farming {"error":{"code":401,"message":"Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.","status":"UNAUTHENTICATED"}}
+[debug] [2024-04-24T19:19:22.903Z] HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
+[debug] [2024-04-24T19:19:22.906Z] FirebaseError: HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
+    at responseToError (C:\Users\david\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:49:12)
+    at RetryOperation._fn (C:\Users\david\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:292:77)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[error] 
+[error] Error: Failed to get Firebase project olive-farming. Please make sure the project exists and your account has permission to access it.
+[debug] [2024-05-06T10:20:40.195Z] ----------------------------------------------------------------------
+[debug] [2024-05-06T10:20:40.197Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\david\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init firestore
+[debug] [2024-05-06T10:20:40.197Z] CLI Version:   13.0.2
+[debug] [2024-05-06T10:20:40.198Z] Platform:      win32
+[debug] [2024-05-06T10:20:40.198Z] Node Version:  v20.10.0
+[debug] [2024-05-06T10:20:40.198Z] Time:          Mon May 06 2024 12:20:40 GMT+0200 (hora de verano de Europa central)
+[debug] [2024-05-06T10:20:40.198Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-05-06T10:20:40.268Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-05-06T10:20:40.268Z] > authorizing via signed-in user (davidpaag2002@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\david\OneDrive\Documentos\Proyectos\OliveFarmingAPIFirebase
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2024-05-06T10:20:42.200Z] Using project from CLI flag: olive-farming
+[debug] [2024-05-06T10:20:42.201Z] > refreshing access token with scopes: []
+[debug] [2024-05-06T10:20:42.204Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2024-05-06T10:20:42.204Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-05-06T10:20:42.395Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 400
+[debug] [2024-05-06T10:20:42.395Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-05-06T10:20:42.395Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/olive-farming [none]
+[debug] [2024-05-06T10:20:42.497Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/olive-farming 401
+[debug] [2024-05-06T10:20:42.497Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/olive-farming {"error":{"code":401,"message":"Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.","status":"UNAUTHENTICATED"}}
+[debug] [2024-05-06T10:20:42.498Z] HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
+[debug] [2024-05-06T10:20:42.499Z] FirebaseError: HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
+    at responseToError (C:\Users\david\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:49:12)
+    at RetryOperation._fn (C:\Users\david\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:292:77)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[error] 
+[error] Error: Failed to get Firebase project olive-farming. Please make sure the project exists and your account has permission to access it.
